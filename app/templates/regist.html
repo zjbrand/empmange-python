@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+{% block title %}ユーザー登録{% endblock %}
+{% block content %}<h1>ユーザー登録</h1>
+{% set values = values|default({}) %}
+<form action="/user/register" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <table class="form_table">
+    <tr>
+      <td>ユーザー名:</td>
+      <td><input name="username" value="{{ values.get('username','') }}" required maxlength="50"
+          autocomplete="username"></td>
+    </tr>
+    <tr>
+      <td>名前:</td>
+      <td><input name="realname" value="{{ values.get('realname','') }}" required maxlength="50"></td>
+    </tr>
+    <tr>
+      <td>パスワード:</td>
+      <td><input name="password" type="password" required minlength="6" maxlength="128"
+          autocomplete="new-password"><span class="hint">6～128文字</span></td>
+    </tr>
+    <tr>
+      <td>性別:</td>
+      <td><label><input type="radio" name="gender" value="true" {% if values.get('gender','true')=='true' %}checked{%
+            endif %}>男</label><label><input type="radio" name="gender" value="false" {% if values.get('gender')=='false'
+            %}checked{% endif %}>女</label></td>
+    </tr>
+    <tr>
+      <td>検証コード:</td>
+      <td><input name="code" required maxlength="4" size="6" autocomplete="off"><img id="num"
+          src="/user/generateImageCode" width="180" height="50" alt="検証コード" style="vertical-align:middle"><button
+          type="button"
+          onclick="document.getElementById('num').src='/user/generateImageCode?t='+Date.now()">コード変更</button></td>
+    </tr>
+  </table>
+  <p><button class="button" type="submit">登録</button> <a href="/login">ログインへ</a></p>
+</form>
+{% endblock %}

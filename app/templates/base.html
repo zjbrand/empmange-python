@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}社員管理システム{% endblock %}</title>
+  <link rel="stylesheet" href="{{url_for('static',path='css/style.css')}}">
+  </link>
+  <style>
+    .error {
+      color: #a40000;
+      background: #fff0ef;
+      padding: 10px;
+      white-space: pre-wrap
+    }
+
+    .success {
+      color: #175b27
+    }
+
+    .inline {
+      display: inline
+    }
+
+    button {
+      cursor: pointer
+    }
+
+    input {
+      margin: 3px
+    }
+
+    .filters {
+      line-height: 2
+    }
+
+    .photo {
+      height: 50px;
+      max-width: 90px;
+      object-fit: contain
+    }
+
+    #content {
+      overflow-x: auto
+    }
+
+    #wrap {
+      max-width: 100%
+    }
+
+    .actions {
+      white-space: nowrap
+    }
+
+    .hint {
+      color: #555;
+      font-size: 12px
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrap">
+    <div id="top_content">
+      <div id="header">
+        <div id="rightheader">
+          <p id="clock"></p>
+          {% if current_user %}<form class="inline" action="/user/logout" method="post"><input type="hidden"
+              name="csrf_token" value="{{ csrf_token }}"><button type="submit">安全退出</button></form>{% endif %}
+        </div>
+        <div id="topheader">
+          <h1 id="title"><a href="/employee/lists">人事管理システム</a></h1>
+        </div>
+        <div id="navigation"></div>
+      </div>
+      <div id="content">
+        <p id="whereami"></p>
+        {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+    <div id="footer">
+      <div id="footer_bg">社員管理システム · FastAPI教学版</div>
+    </div>
+  </div>
+  <script src="{{ url_for('static', path='js/script.js') }}"></script>
+  <script>document.getElementById('clock').innerHTML = getTime(); setInterval(() => document.getElementById('clock').innerHTML = getTime(), 1000);</script>
+</body>
+
+</html>

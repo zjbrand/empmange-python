@@ -1,0 +1,295 @@
+/* Japanese business application theme. No external fonts or image dependencies. */
+:root {
+  color-scheme: light;
+  --navy: #203954;
+  --ink: #263548;
+  --muted: #637286;
+  --line: #d9e1e8;
+  --paper: #ffffff;
+  --blue: #245d87;
+  --danger: #a33e44;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 32px 24px;
+  background: #f0f3f6;
+  color: var(--ink);
+  font: 14px/1.75 "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+#wrap {
+  width: 1120px;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: 0 6px 24px rgb(29 48 69 / 5%);
+  overflow: hidden;
+}
+#top_content { padding: 0; }
+#header {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 32px;
+  background: var(--navy);
+  border-top: 4px solid #7d9dba;
+  color: white;
+}
+#topheader { order: 0; padding: 0; background: none; }
+#title { margin: 0; padding: 0; font-size: 21px; font-weight: 700; letter-spacing: .08em; }
+#title a, #title a:visited { color: white; text-decoration: none; }
+#title a:hover { color: #d6e6f4; }
+#rightheader {
+  order: 1;
+  float: none;
+  width: auto;
+  height: auto;
+  text-align: right;
+  color: #d6e0eb;
+  font-size: 11px;
+}
+#rightheader p { margin: 0 0 6px; padding: 0; }
+#rightheader button {
+  min-height: 30px;
+  padding: 3px 13px;
+  background: transparent;
+  color: white;
+  border-color: #71869b;
+  font-size: 12px;
+}
+#rightheader button:hover { background: #354f6a; border-color: #b7c8d8; }
+#navigation:empty { display: none; }
+#navigation { order: 2; flex-basis: 100%; }
+#navigation ul { display: flex; gap: 18px; padding: 0; margin: 0; list-style: none; }
+#navigation a { color: white; }
+#content { padding: 30px 32px 38px; min-height: 390px; background: white; }
+#content #whereami:empty { display: none; }
+#content > p:first-of-type:not(:empty) { color: var(--muted); font-size: 12px; }
+#content h1 {
+  margin: 10px 0 24px;
+  padding: 0 0 12px 14px;
+  border-left: 4px solid var(--blue);
+  border-bottom: 1px solid var(--line);
+  color: var(--navy);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: .06em;
+}
+#content h2, #content h3 { color: var(--navy); }
+#content p { margin: 0 0 16px; padding: 0; }
+a { color: var(--blue); text-underline-offset: 3px; }
+a:hover { color: #143b5a; }
+form { margin: 0; padding: 0; }
+input, select, textarea, button { font: inherit; }
+input:not([type="hidden"]):not([type="radio"]):not([type="checkbox"]):not([type="submit"]), select, textarea {
+  min-height: 38px;
+  max-width: 100%;
+  margin: 4px 6px 4px 0;
+  padding: 7px 10px;
+  color: var(--ink);
+  background: white;
+  border: 1px solid #b8c5d1;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+input::placeholder, textarea::placeholder { color: #83909d; font-size: 12px; }
+input:focus, select:focus, textarea:focus { border-color: var(--blue); outline: 3px solid #e1edf6; outline-offset: 1px; }
+input[type="radio"], input[type="checkbox"] { accent-color: var(--blue); vertical-align: middle; margin: 0 5px 0 0; }
+input[type="file"] { width: 100%; padding: 5px; font-size: 12px; }
+input[type="file"]::file-selector-button {
+  padding: 5px 12px;
+  margin-right: 12px;
+  border: 0;
+  border-radius: 2px;
+  background: #eaf0f5;
+  color: var(--navy);
+  cursor: pointer;
+}
+button, input[type="submit"], .button {
+  display: inline-block;
+  min-height: 37px;
+  padding: 6px 19px;
+  border: 1px solid var(--blue);
+  border-radius: 3px;
+  background: var(--blue);
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: background-color .15s, border-color .15s;
+}
+button:hover, input[type="submit"]:hover, .button:hover { background: #194b71; border-color: #194b71; color: white; }
+button:focus-visible, a:focus-visible { outline: 3px solid #7aa9cc; outline-offset: 3px; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+#content .filters {
+  margin: 0 0 24px;
+  padding: 17px 20px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #f7f9fb;
+  color: #46596c;
+  font-size: 13px;
+  line-height: 2.7;
+}
+.filters input[name="searchName"] { width: 150px; }
+.filters input[name="lowSalary"], .filters input[name="topSalary"] { width: 120px; }
+.filters input[name="dateBegin"], .filters input[name="dateEnd"] { width: 146px; }
+.filters button { margin-left: 6px; }
+.filters a { margin-left: 12px; white-space: nowrap; }
+.table { width: 100%; margin: 0 0 22px; border-collapse: collapse; font-size: 13px; }
+.table th, .table td { padding: 13px 15px; border: 1px solid var(--line); vertical-align: middle; text-align: left; }
+.table thead th { padding: 11px 15px; background: #eaf0f5; color: #344f69; font-weight: 700; white-space: nowrap; }
+.table .row1 td { background: white; }
+.table .row2 td { background: #f8fafc; }
+.table tbody tr:hover td { background: #edf4f9; }
+.table td:first-child { width: 65px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.table td:nth-child(3) { text-align: center; width: 100px; }
+.table td:nth-child(4) { text-align: right; font-variant-numeric: tabular-nums; }
+.table td:nth-child(5) { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.table td[colspan] { padding: 36px; text-align: center; color: var(--muted); }
+#content .photo { display: inline-block; width: 44px; height: 44px; max-width: 90px; border: 1px solid var(--line); border-radius: 4px; object-fit: cover; background: #f1f4f7; vertical-align: middle; }
+#content .actions a, #content .actions button { min-height: 30px; padding: 4px 12px; border: 1px solid #b8c9d7; border-radius: 3px; background: white; color: var(--blue); font-size: 12px; font-weight: 500; text-decoration: none; display: inline-block; vertical-align: middle; }
+#content .actions a:hover { background: #e8f0f7; }
+#content .actions button { margin-left: 6px; color: var(--danger); border-color: #dbbcc0; }
+#content .actions button:hover { background: #fff0f1; border-color: var(--danger); }
+#content > p > a[href="/addEmp"] { display: inline-block; padding: 8px 22px; border: 1px solid var(--blue); border-radius: 3px; background: var(--blue); color: white; font-weight: 600; text-decoration: none; }
+#content > p > a[href="/addEmp"]:hover { background: #194b71; }
+.form_table { width: 100%; max-width: 760px; border-collapse: collapse; margin: 0 0 24px; font-size: 14px; }
+.form_table td { padding: 17px 20px; border: 1px solid var(--line); }
+.form_table td:first-child { width: 165px; background: #f3f6f9; font-weight: 600; color: #40566d; white-space: nowrap; }
+.form_table input:not([type="radio"]):not([type="checkbox"]):not([type="file"]) { width: 280px; }
+.form_table input[name="code"] { width: 94px !important; }
+.form_table label { display: inline-block; margin: 5px 22px 5px 0; cursor: pointer; }
+.form_table #num { margin: 5px 10px 5px 0; border: 1px solid var(--line); border-radius: 3px; }
+.form_table button[type="button"] { padding: 5px 12px; background: white; color: var(--blue); border-color: #b8c9d7; font-size: 12px; }
+#content .hint { display: block; margin: 6px 0 0; color: var(--muted); font-size: 12px; }
+#content form > p > a { margin-left: 15px; font-size: 13px; }
+#content .error, #content .notice_error { padding: 12px 16px; border: 1px solid #e4bfc2; border-left: 4px solid #b74a53; border-radius: 3px; background: #fff5f5; color: #91343d; }
+#content .success, #content .notice { padding: 12px 16px; border: 1px solid #b9d8ca; border-left: 4px solid #428065; border-radius: 3px; background: #f0f8f3; color: #296046; }
+#footer { padding: 0; background: #f7f9fb; border-top: 1px solid var(--line); }
+#footer #footer_bg { padding: 17px 32px; background: none; color: #748294; font-size: 11px; letter-spacing: .04em; }
+.hidden { display: none; }
+.clear { clear: both; }
+.little, .small_input { font-size: 12px; }
+@media (max-width: 760px) {
+  body { padding: 12px; font-size: 13px; }
+  #header { padding: 18px 20px; gap: 12px; }
+  #title { font-size: 18px; }
+  #rightheader { text-align: left; }
+  #content { padding: 22px 18px; }
+  #content h1 { font-size: 20px; }
+  #content .filters { padding: 12px; }
+  .table { min-width: 650px; }
+  .table td, .table th { padding: 10px; }
+  .form_table td { padding: 12px 10px; }
+  .form_table td:first-child { width: 100px; white-space: normal; }
+  .form_table input:not([type="radio"]):not([type="checkbox"]):not([type="file"]) { width: 100%; }
+  .form_table #num { max-width: 100%; height: auto; }
+  #footer #footer_bg { padding: 15px 18px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media print {
+  body { padding: 0; background: white; }
+  #wrap { width: 100%; border: 0; box-shadow: none; }
+  #header { background: white; color: black; border-top: 0; border-bottom: 2px solid #203954; }
+  #title a { color: black; }
+  #rightheader, #content .filters, .actions, #content > p > a[href="/addEmp"] { display: none; }
+  #content { padding: 20px 0; min-height: 0; overflow: visible; }
+}
+
+/* Compact search layout: preserve the original HTML and its two-line form. */
+#content:has(> .filters) > p:first-of-type:not(:empty) {
+  float: right;
+  margin: 12px 0 0 20px;
+  padding: 4px 0;
+  color: #637286;
+  font-size: 12px;
+  text-align: right;
+  line-height: 24px;
+}
+#content:has(> .filters) > h1 {
+  margin-top: 6px;
+  margin-bottom: 20px;
+  padding-top: 4px;
+  padding-bottom: 12px;
+  font-size: 21px;
+}
+#content .filters {
+  clear: both;
+  padding: 12px 18px;
+  margin-bottom: 22px;
+  border-color: #dbe3eb;
+  background: #f8fafc;
+  font-size: 13px;
+  line-height: 44px;
+}
+#content .filters input {
+  box-sizing: border-box;
+  height: 32px;
+  min-height: 32px;
+  margin: 4px 8px 4px 4px;
+  padding: 4px 9px;
+  border-color: #bccbd8;
+  border-radius: 3px;
+  font-size: 13px;
+  line-height: 22px;
+  vertical-align: middle;
+}
+/* Birthday label is four full-width characters longer than the name label. */
+#content .filters input[name="searchName"] {
+  width: 140px;
+  margin-left: 56px;
+  margin-right: 20px;
+}
+#content .filters input[name="lowSalary"],
+#content .filters input[name="topSalary"] { width: 108px; }
+#content .filters input[name="dateBegin"],
+#content .filters input[name="dateEnd"] { width: 140px; }
+#content .filters button {
+  height: 32px;
+  min-height: 32px;
+  padding: 4px 20px;
+  margin: 4px 0 4px 12px;
+  font-size: 12px;
+  line-height: 22px;
+  vertical-align: middle;
+}
+#content .filters a {
+  display: inline-block;
+  margin-left: 14px;
+  font-size: 12px;
+  line-height: 32px;
+  vertical-align: middle;
+}
+#content .filters input:focus {
+  border-color: #527c9e;
+  outline: 2px solid #e0ebf3;
+  outline-offset: 1px;
+}
+#content .form_table input:not([type="radio"]):not([type="checkbox"]):not([type="file"]) {
+  width: 240px;
+  min-height: 34px;
+  padding: 5px 9px;
+}
+#content .form_table td { padding: 13px 18px; }
+@media (max-width: 760px) {
+  #content:has(> .filters) > p:first-of-type:not(:empty) {
+    float: none;
+    margin: 0 0 8px;
+    text-align: right;
+  }
+  #content .filters { min-width: 620px; padding: 10px 14px; }
+  #content .form_table input:not([type="radio"]):not([type="checkbox"]):not([type="file"]) { width: 100%; }
+}
+@media print { #content .filters { display: none; } }
+

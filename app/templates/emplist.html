@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}<p>ようこそ {{ current_user.realname }} !</p>
+<h1>社員一覧</h1>
+<form action="/employee/search" method="get" class="filters">
+  名前 <input name="searchName" value="{{ filters.get('searchName','') }}" size="8">
+  給料範囲 <input name="lowSalary" value="{{ filters.get('lowSalary','') }}" size="7"> ～ <input name="topSalary"
+    value="{{ filters.get('topSalary','') }}" size="7"><br>
+  誕生日範囲 <input name="dateBegin" value="{{ filters.get('dateBegin','') }}" placeholder="2000-01-01" size="11"> ～ <input
+    name="dateEnd" value="{{ filters.get('dateEnd','') }}" placeholder="2000-12-31" size="11">
+  <button type="submit">検索</button> <a href="/employee/lists">全件表示</a>
+</form>
+<table class="table" cellpadding="0" cellspacing="0">
+  <thead>
+    <tr class="table_header">
+      <th>ID</th>
+      <th>名前</th>
+      <th>アイコン</th>
+      <th>給料</th>
+      <th>誕生日</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for employee in employees %}<tr class="{{ loop.cycle('row1','row2') }}">
+      <td>{{ employee.id }}</td>
+      <td>{{ employee.name }}</td>
+      <td>{% if employee.photo %}<img class="photo" src="/uploads/{{ employee.photo }}" alt="{{ employee.name }}">{%
+        else %}未設定{% endif %}</td>
+      <td>{{ '%.2f'|format(employee.salary) }}</td>
+      <td>{{ employee.birthday }}</td>
+      <td class="actions"><a href="/employee/detail?id={{ employee.id }}">更新</a>
+        <form class="inline" method="post" action="/employee/delete" onsubmit="return confirm('この社員を削除しますか？')"><input
+            type="hidden" name="id" value="{{ employee.id }}"><input type="hidden" name="csrf_token"
+            value="{{ csrf_token }}"><button type="submit">削除</button></form>
+      </td>
+    </tr>
+    {% else %}<tr>
+      <td colspan="6">該当する社員はいません。</td>
+    </tr>{% endfor %}</tbody>
+</table>
+<p><a href="/addEmp">社員追加</a></p>
+{% endblock %}

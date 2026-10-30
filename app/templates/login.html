@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}ログイン{% endblock %}
+{% block content %}<h1>ログイン</h1>
+{% if request.query_params.get('registered') %}<p class="success">登録しました。ログインしてください。</p>{% endif %}
+<form action="/user/login" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <table class="form_table">
+    <tr>
+      <td>ユーザー名:</td>
+      <td><input name="username" value="{{ username|default('') }}" required maxlength="50" autocomplete="username">
+      </td>
+    </tr>
+    <tr>
+      <td>パスワード:</td>
+      <td><input type="password" name="password" required maxlength="128" autocomplete="current-password"></td>
+    </tr>
+  </table>
+  <p><button class="button" type="submit">ログイン</button></p>
+</form>
+<a href="/register">ユーザー名がない場合、こちらへ</a>
+{% endblock %}
