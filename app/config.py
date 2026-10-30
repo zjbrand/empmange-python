@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-# これら設定はパスワードがない
+# これら設定はパスワードがないのことは、確認しました。
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///" +
